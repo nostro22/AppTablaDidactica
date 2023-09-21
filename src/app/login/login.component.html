@@ -1,0 +1,62 @@
+<ion-content>
+  <ion-row class="ion-justify-content-center bg-danger py-4">
+    <ion-col size="4" *ngFor="let account of accounts">
+      <ion-button color="tertiary" (click)="llenarUsuario(account.id)" fill="" class=" border border-dark border-3 btn-lg">
+        <div >
+          <ion-icon name="logo-octocat"></ion-icon>
+          <br>
+          <ion-label>{{ account.label }}</ion-label>
+        </div>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center bg-danger p-5">
+      <ion-img src="../../assets/undraw_children_re_c37f.svg"></ion-img>
+    </ion-row>
+
+    <form [formGroup]="formUser" class="login-form">
+
+      <ion-row class="ion-justify-content-center">
+
+        <ion-col size="12" class="bg-danger py-4">
+          <ion-item color="tertiary" class="rounded-top rounded-4 mt-2">
+            <ion-label position="floating">Correo Electronico</ion-label>
+            <ion-input formControlName="email" type="email" maxlength="20"></ion-input>
+            <!-- <span>{{password.errors | json}}</span> -->
+            <div [hidden]="email.valid || email.pristine">
+              <div class="alert alert-danger fw-normal" *ngIf="email.errors?.['required']">Correo electronico es
+                requerido.</div>
+              <div class="alert alert-danger fw-light" *ngIf="email.hasError('pattern')">Correo electronico en formato
+                incorrecto.
+              </div>
+            </div>
+          </ion-item>
+          <ion-item color="tertiary" class="rounded-top rounded-4 mt-2">
+            <ion-label position="floating">Clave</ion-label>
+            <ion-input formControlName="password" type="password" maxlength="13"></ion-input>
+            <div [hidden]="password.valid || (password.pristine)">
+              <div *ngIf="password.errors?.['required']" class="alert alert-danger fw-normal">Clave es requerido.</div>
+              <div *ngIf="password.errors?.['minlength']" class="alert alert-danger fw-light">clave debe tener minimo 6
+                caracteres</div>
+              <div *ngIf="password.hasError('maxlength')" class="alert alert-danger fw-light">clave debe tener maximo 12
+                caracteres</div>
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-align-items-center bg-danger py-4">
+        <ion-col class="align-items-center" size="5">
+          <ion-button [disabled]="formUser.invalid" color="tertiary" id="open-loading" expand="block"
+            class="login-button" (click)="login()">Ingresar</ion-button>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button (click)="clear()">Limpiar</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <ion-loading class="custom-loading" trigger="open-loading" message="Loading..." [duration]="3000"></ion-loading>
+    <!-- <ion-button expand="block" class="signup-button" (click)="signup()">Registrarse</ion-button> -->
+  </ion-grid>
+</ion-content>

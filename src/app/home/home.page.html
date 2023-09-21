@@ -1,0 +1,99 @@
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button>
+    <ion-icon style="font-size: 60px" [src]="iconoSelecionadoPath"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="start">
+    <ion-fab-button (click)="cambiar('spanish')">
+      <ion-icon style="font-size: 48px" src="../../assets/iconos/spain.svg" name="spanish"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="cambiar('portugues')">
+      <ion-icon style="font-size: 48px" src="../../assets/iconos/portugal.svg" name="portues"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="cambiar('ingles')">
+      <ion-icon style="font-size: 48px" src="../../assets/iconos/usa.svg" name="english"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
+
+
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button color="danger">
+    <ion-icon color="primary" style="font-size: 30px; " [src]="iconoSelecionadoPathCategoria"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="start">
+    <ion-fab-button (click)="cambiarCategoria('animales')">
+      <ion-icon style="font-size: 30px" src="../../assets/iconos/iconoAnimales.svg" name="animales"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="cambiarCategoria('colores')">
+      <ion-icon style="font-size: 30px" src="../../assets/iconos/iconoColores.svg" name="colores"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button (click)="cambiarCategoria('numeros')">
+      <ion-icon style="font-size: 30px" src="../../assets/iconos/iconoNumeros.svg" name="numeros"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+<ion-fab vertical="top" horizontal="start" slot="fixed">
+  <ion-fab-button color="danger">
+    <ion-icon (click)="toMyLog()" name="log-out-outline"></ion-icon>
+  </ion-fab-button>
+ 
+</ion-fab>
+
+
+
+<ng-container *ngIf="isPortrait">
+
+  <ion-grid [ngClass]="{
+  'bg-danger': isCategoria === 1,
+  'bg-warning': isCategoria === 2,
+  'bg-info': isCategoria === 3,
+  'vw-100': true, 
+  'vh-100': true}">
+    <ion-row class="ion-justify-content-center ion-align-items-center ">
+      <ion-card class="col btn btn-primary bg-light bg-opacity-75" style="width: 30vw; height: 30vh;"
+        *ngFor="let account of seleccion.slice(0,2)">
+        <ion-img [src]="account.foto" (click)="playAudio(account.nombreAudio)"
+          style="max-width: 100%; max-height: 100%;" alt=""></ion-img>
+      </ion-card>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center ">
+      <ion-card class="col btn btn-primary bg-light bg-opacity-75" style="width: 30vw; height: 30vh;"
+        *ngFor="let account of seleccion.slice(2,4) ">
+        <ion-img [src]="account.foto" (click)="playAudio(account.nombreAudio)" alt=""
+          style="max-width: 100%; max-height: 100%;"></ion-img>
+      </ion-card>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center ">
+      <ion-card class="col btn btn-primary bg-light bg-opacity-75" style="width: 30vw; height: 30vh;"
+        *ngFor="let account of seleccion.slice(4,6) ">
+        <ion-img [src]="account.foto" (click)="playAudio(account.nombreAudio)" alt=""
+          style="max-width: 100%; max-height: 100%;"></ion-img>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ng-container>
+<ng-container *ngIf="!isPortrait">
+
+  <ion-grid [ngClass]="{
+    'bg-danger': isCategoria === 1,
+    'bg-warning': isCategoria === 2,
+    'bg-info': isCategoria === 3,
+    'vw-100': true, 
+    'vh-100': true}">
+    <ion-row class="ion-justify-content-center ion-align-items-center ">
+      <ion-card class="col btn btn-primary bg-light bg-opacity-75" (click)="playAudio(account.nombreAudio)" style="width: 30vw; height: 42vh;"
+        *ngFor="let account of seleccion.slice(0,3)">
+        <ion-img [src]="account.foto" alt=""
+          style="max-width: 50%; max-height: 100%;"></ion-img>
+      </ion-card>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center ">
+      <ion-card class="col btn btn-primary bg-light bg-opacity-75  " style="width: 30vw; height: 42vh;"
+        *ngFor="let account of seleccion.slice(3,6) ">
+        <ion-img [src]="account.foto" (click)="playAudio(account.nombreAudio)" alt=""
+          style="max-width: 50%; max-height: 100%;"></ion-img>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ng-container>

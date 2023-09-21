@@ -1,0 +1,42 @@
+* {
+    font-family: 'Syne', sans-serif !important;
+}
+.spinner
+{
+    width: 32px;
+    height: 32px;
+    background-image: url('../../assets/app1spiner.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+ion-grid {
+    height: 80vh; 
+    width: 100vw; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction:column;
+}
+.error{
+    --ion-color: var(--ion-color-danger);
+    color: var(--ion-color-danger);
+    font-size: small;
+}
+
+
+ion-content{
+    width: 100vw; 
+     --background: url('https://media.giphy.com/media/FpUcEs9flCUW3e2q5I/giphy.gif') no-repeat center center fixed;
+    background-size: cover;
+}
+
+ion-row{
+    margin-top: 5vh;
+    width: 100vw; 
+}
+ion-button{
+    min-height:5vh;
+    height: 5vh;
+}
+  
+
